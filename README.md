@@ -58,6 +58,7 @@ catch (ShaderError e) {
 
     throw display_error(message.c_str());
 }
+```
 
 ## Installation
 
