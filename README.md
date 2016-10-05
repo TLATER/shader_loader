@@ -73,4 +73,4 @@ LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
 CPLUS_INCLUDE_PATH="$HOME/.local/include:CPLUS_INCLUDE_PATH"
 ```
 
-After that, the library may be included using #include <libshader>.
+After that, the library may be included using `#include <libshader>`.
