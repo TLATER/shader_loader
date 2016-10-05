@@ -2,7 +2,9 @@
 #define SHADER_PROGRAM_HPP
 
 #include <GL/glu.h>
+#ifndef SHADER_HPP
 #include "shader.hpp"
+#endif
 
 class ShaderProgram
 {

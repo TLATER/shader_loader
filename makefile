@@ -8,7 +8,7 @@ OBJ = $(addprefix obj/,$(_OBJ))
 # Include libs
 LDFLAGS +=
 
-all: libshader.a libshader.so
+all: libshader.a libshader.so libshader
 
 obj/%.o: src/%.cpp
 	@mkdir -p $(@D)
@@ -20,7 +20,16 @@ libshader.a: $(OBJ) $(LDFLAGS)
 libshader.so: $(OBJ) $(LDFLAGS)
 	$(CC) -shared -o $@ $^
 
-.PHONY: clean test
+libshader: include/shader.hpp include/shader_program.hpp\
+           include/shader_error.hpp
+	cat $^ > $@
+
+install: libshader.a libshader.so libshader
+	@mkdir -p "$$HOME/.local/lib" "$$HOME/.local/include"
+	cp libshader.a libshader.so "$$HOME/.local/lib/"
+	cp libshader "$$HOME/.local/include"
+
+.PHONY: clean install
 
 clean:
 	rm libshader.a libshader.so obj/*
