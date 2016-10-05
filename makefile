@@ -32,4 +32,4 @@ install: libshader.a libshader.so libshader
 .PHONY: clean install
 
 clean:
-	rm libshader.a libshader.so obj/*
+	rm libshader libshader.a libshader.so obj/*
