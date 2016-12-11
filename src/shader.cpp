@@ -1,4 +1,5 @@
 #include <fstream>
+#include <string.h>
 
 #include <GL/glew.h>
 
@@ -56,4 +57,25 @@ Shader* Shader::load_from_file (const GLchar* file_name, GLenum type)
     file.close();
 
     return new Shader(src, length, type);
+}
+
+Shader* Shader::load_from_file_with_extension (const GLchar* file_name)
+{
+    const GLchar* extension = &(file_name[strlen(file_name) - 5]);
+    GLenum type;
+
+    if (strcmp(extension, ".vert"))
+        type = GL_VERTEX_SHADER;
+    else if (strcmp(extension, ".tesc"))
+        type = GL_TESS_CONTROL_SHADER;
+    else if (strcmp(extension, ".tese"))
+        type = GL_TESS_EVALUATION_SHADER;
+    else if (strcmp(extension, ".geom"))
+        type = GL_GEOMETRY_SHADER;
+    else if (strcmp(extension, ".frag"))
+        type = GL_FRAGMENT_SHADER;
+    else if (strcmp(extension, ".comp"))
+        type = GL_COMPUTE_SHADER;
+
+    return load_from_file(file_name, type);
 }
